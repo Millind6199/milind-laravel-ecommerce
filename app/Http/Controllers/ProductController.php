@@ -56,7 +56,7 @@ class ProductController extends Controller
             'product_amount' => $request->product_amount,
             'cat_id' => $request->category  ,
         ]);
-        return redirect('/viewproduct');
+        return redirect('/viewproduct' , 'cid'->$request->category);
     }
 
     /**
@@ -67,9 +67,9 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        // dd($product);
+//         dd();
         return view('Admin.view_product',[ 'data' => Product::all()] ,
-            ['category' => Category::all()]);
+            ['category' => Category::all() , ]);
         // return view(,[ 'data' => Product::all()]);
     }
     public function show2()

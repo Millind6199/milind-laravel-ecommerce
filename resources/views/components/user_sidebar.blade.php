@@ -10,8 +10,14 @@
     <h3 class="w3-bar-item">Menu</h3>
 
 
-    <div class="w3-dropdown-hover">
+    <div class="w3-dropdown-hover ">
         <a href=""> <button class="w3-button"> Home </button> </a>
+        <a href=""> <button class="w3-button"> Cart </button> </a>
+        <a href=""> <button class="w3-button"> My Orders </button> </a>
+        <a href=""> <button class="w3-button"> About Us</button> </a>
+        <a href=""> <button class="w3-button"> Contact Us </button> </a>
+
+
     </div>
 
 
@@ -26,7 +32,7 @@
         <a href="/dashboard" style="color:white;font-size:30px;"><b>Dashboard</b></a>
         <div class="w3-dropdown-hover" style="float:right">
             <button class="w3-button">
-                <b style="font-size:36px">
+                <b style="font-size:20px">
                     {{ucwords(Auth::guard('admin')->user()->name)}}</b><i class="fas fa-users-cog lg" style="font-size:36px"></i>
                 <i class="fa fa-caret-down"></i>
             </button>
