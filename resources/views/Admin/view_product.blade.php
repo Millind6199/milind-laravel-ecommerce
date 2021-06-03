@@ -37,10 +37,10 @@
                     <td>{{$list->product_details}}</td>
                     <td>{{$list->product_amount}}</td>
                     <td><img src="{{$list->product_image}}" width="80px" height="50px"></td>
-                    <td>{{$list->product_status}}</td>
+                    <td class="status-{{$list->id}}">{{$list->product_status}}</td>
                     <td>
                         <a href="/editproduct/{{$list->id}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
-                        <a href="/remove/{{$list->id}}" class="btn btn-danger"><i class="fas fa-trash-alt"></i></a>
+                        <a href="/remove/{{$list->id}}" class="btn btn-danger delete_btn"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
 
@@ -74,9 +74,57 @@
             success:function(data){
                 //alert("done");
                 //if()
+                console.log(id, statusData);
                 $('.status-'+id).html('<span class="status-'+id+''+color+'">'+statusData+'</span>');
-                $('.change').html(data);
+                // ye status class element to kahi dikh nahi ra
+                // $('.change').html(data);
             },
         });
     }
+    $(document).ready(function(){
+        $('.delete_btn').click(function () {
+            var id = $(this).parents('tr').attr('id');
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        type:"GET",
+                        url:"/remove/"+id,
+                        success:function(){
+                            swalWithBootstrapButtons.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                            )
+                            $('.produ-'+id).empty();
+                        },
+                    });
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+        });
+    });
 </script>

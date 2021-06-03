@@ -37,7 +37,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        $product = $request->input();
+//        dd($request->all());
         $request->validate([
             'category' => 'required',
             'product_name' => 'required',
@@ -56,7 +56,7 @@ class ProductController extends Controller
             'product_amount' => $request->product_amount,
             'cat_id' => $request->category  ,
         ]);
-        return redirect('/viewproduct' , 'cid'->$request->category);
+        return redirect('/viewproduct');
     }
 
     /**
@@ -138,5 +138,6 @@ class ProductController extends Controller
         //        var_dump($request->input());
         -
         Product::where('id',$request->id)->update(['product_status'=>$request->status]);
+        // response me kuchh return to nahi kiya hai...
     }
 }
