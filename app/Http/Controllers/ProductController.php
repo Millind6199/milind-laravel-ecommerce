@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Order;
 
 class ProductController extends Controller
 {
@@ -80,7 +81,8 @@ class ProductController extends Controller
 
     public function show3()
     {
-        return view('Admin.dashboard',['data' => Product::all()] , ['user' => User::all()]);
+        $data = ['data' => Product::all(),'user' => User::all(),'orders' => Order::all() ];
+        return view('Admin.dashboard',['data' => $data]);
     }
 
     public function buy_now($id)
@@ -138,6 +140,18 @@ class ProductController extends Controller
         //        var_dump($request->input());
         -
         Product::where('id',$request->id)->update(['product_status'=>$request->status]);
-        // response me kuchh return to nahi kiya hai...
     }
+    public function search(Request $request){
+// Get the search value from the request
+        $search = $request->input('search');
+
+// Search in the title and body columns from the posts table
+        $data = Product::query()
+                ->where('product_name', 'LIKE', "%{$search}%")
+            /*->orWhere('body', 'LIKE', "%{$search}%")*/->get();
+
+//dd($posts);
+// Return the search view with the resluts compacted
+return view('User.home', compact('data'));
+}
 }

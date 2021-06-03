@@ -9,6 +9,13 @@
 <div class="w3-sidebar w3-bar-block w3-light-grey w3-card" style="width:20%">
     <h3 class="w3-bar-item">Menu</h3>
 
+    <div class="w3-dropdown-hover">
+        <button class="w3-button">
+            <a href="/dashboard" style="color: black">Dashboard</a>
+
+        </button>
+        </div>
+
 
     <div class="w3-dropdown-hover">
         <button class="w3-button">Product Management
@@ -47,7 +54,11 @@
 <div style="margin-left:20%">
 
     <div class="w3-container w3-teal">
-        <a href="/dashboard" style="color:white;font-size:30px;"><b>Dashboard</b></a>
+        <form action="{{route('search')}}" method="get">
+        @csrf
+        <input class="mt-3 rounded" type="text" name="search" placeholder="search">
+        <input type="submit" class="btn btn-dark" value="Search">
+
         <div class="w3-dropdown-hover" style="float:right">
             <button class="w3-button">
                 <b style="font-size:36px">
@@ -59,6 +70,8 @@
                 <a href="/logout" class="w3-bar-item w3-button red"><b>Logout</b></a>
             </div>
         </div>
+        </form>
+
     </div>
 
 

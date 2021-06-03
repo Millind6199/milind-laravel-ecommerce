@@ -12,7 +12,7 @@
             <div class="card-header">Total Products</div>
             <div class="card-body">
                 <h5 class="card-title">Products</h5>
-                <h1 class="card-text">{{count($data)}}</h1>
+                <h1 class="card-text">{{count($data['data'])}}</h1>
             </div>
         </div>
     </div>
@@ -21,7 +21,7 @@
             <div class="card-header">Total Orders</div>
             <div class="card-body">
                 <h5 class="card-title">Orders</h5>
-                <h1 class="card-text">0000</h1>
+                <h1 class="card-text">{{count($data['orders'])}}</h1>
             </div>
         </div>
     </div>
@@ -30,7 +30,7 @@
         <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
             <div class="card-header">Total Users</div>
             <div class="card-body">
-                <h5 class="card-title">{{count($user)}}</h5>
+                <h5 class="card-title">{{count($data['user'])}}</h5>
                 <h4 class="card-text">Active :- 000</h4>
                 <h4 class="card-text">in-Active:- 000 </h4>
 

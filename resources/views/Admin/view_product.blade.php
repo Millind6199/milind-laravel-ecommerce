@@ -27,10 +27,10 @@
                 <tr>
                     <td>
                         @if($list->product_status == 'Available')
-                            <input type="checkbox"  onclick="checkStatus({{$list->id}})"
+                            <input type="checkbox" checked  onclick="checkStatus({{$list->id}})"
                                    id="marked-{{$list->id}}">
                         @else
-                            <input type="checkbox" checked onclick="checkStatus({{$list->id}})" id="marked-{{$list->id}}">
+                            <input type="checkbox" onclick="checkStatus({{$list->id}})" id="marked-{{$list->id}}">
                         @endif
                     </td>
                     <td>{{$list->product_name}}</td>

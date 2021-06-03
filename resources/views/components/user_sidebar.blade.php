@@ -11,11 +11,12 @@
 
 
     <div class="w3-dropdown-hover ">
-        <a href=""> <button class="w3-button"> Home </button> </a>
-        <a href=""> <button class="w3-button"> Cart </button> </a>
-        <a href=""> <button class="w3-button"> My Orders </button> </a>
-        <a href=""> <button class="w3-button"> About Us</button> </a>
-        <a href=""> <button class="w3-button"> Contact Us </button> </a>
+
+        <a href="/viewproduct2"> <button class="w3-button"> Home </button> </a>
+        <a href="/showcart"> <button class="w3-button"> Cart </button> </a>
+        <a href="showorder"> <button class="w3-button"> My Orders </button> </a>
+{{--        <a href=""> <button class="w3-button"> About Us</button> </a>--}}
+{{--        <a href=""> <button class="w3-button"> Contact Us </button> </a>--}}
 
 
     </div>
@@ -29,7 +30,12 @@
 <div style="margin-left:20%">
 
     <div class="w3-container w3-teal">
-        <a href="/dashboard" style="color:white;font-size:30px;"><b>Dashboard</b></a>
+{{--        <a href="/dashboard" style="color:white;font-size:30px;"><b>Dashboard</b></a>--}}
+        <form action="{{route('search')}}" method="get">
+            @csrf
+            <input class="mt-3 rounded" type="text" name="search" placeholder="search">
+             <input type="submit" class="btn btn-dark" value="Search">
+
         <div class="w3-dropdown-hover" style="float:right">
             <button class="w3-button">
                 <b style="font-size:20px">
@@ -41,6 +47,7 @@
                 <a href="/logout" class="w3-bar-item w3-button red"><b>Logout</b></a>
             </div>
         </div>
+        </form>
     </div>
 
 

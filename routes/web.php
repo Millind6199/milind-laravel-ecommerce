@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CartsController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,3 +56,14 @@ Route::prefix('users')->group(function(){
 });
 
 Route::post('/signup' , [UserController::class , 'store']);
+
+Route::get('/add-to-cart/{product_id}',[CartsController::class,'store'] );
+Route::get('/showcart',[CartsController::class,'show'] );
+Route::get('/remove-cart/{id}' , [CartsController::class,'destroy']);
+
+
+Route::post('/place-order/{product_id}',[OrderController::class , 'store']);
+Route::get('/showorder' ,[OrderController::class , 'show'] );
+Route::get('/remove-order/{order_id}',[OrderController::class , 'destroy']);
+
+Route::get('/search/', [ProductController::class,'search'])->name('search');
