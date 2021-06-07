@@ -69,8 +69,8 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 //         dd();
-        return view('Admin.view_product',[ 'data' => Product::all()] ,
-            ['category' => Category::all() , ]);
+        return view('Admin.view_product',[ 'data' => Product::paginate(10)] ,
+            ['category' => Category::all()]);
         // return view(,[ 'data' => Product::all()]);
     }
     public function show2()

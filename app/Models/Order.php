@@ -17,7 +17,8 @@ class Order extends Model
         'mobile_no',
     ];
 
-    public function product() {
+    public function product()
+    {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
 }

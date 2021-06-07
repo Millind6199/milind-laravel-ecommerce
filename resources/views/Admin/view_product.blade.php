@@ -50,7 +50,17 @@
 
         </table>
     </div>
-</div>
+
+    <div class="container row ">
+        <div class="col-md-4"></div>
+        <div class=" col-4"></div>
+        <div class="col-4"
+            {{$data->links()}}
+
+        </div>
+
+    </div>
+
 
 <script>
     function checkStatus(id,status){
