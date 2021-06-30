@@ -15,6 +15,7 @@ class Category_listcontroller extends Controller
         $response['status'] = 'success';
         $response['message'] = 'Show Data';
         $response['data'] = $data;
+//        $response['token'] = $data->createToken('Api token')->accessToken;
 
         return $response;
     }

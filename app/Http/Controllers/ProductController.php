@@ -69,7 +69,7 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 //         dd();
-        return view('Admin.view_product',[ 'data' => Product::paginate(10)] ,
+        return view('Admin.view_product',[ 'data' => Product::paginate(5)] ,
             ['category' => Category::all()]);
         // return view(,[ 'data' => Product::all()]);
     }
@@ -154,4 +154,11 @@ class ProductController extends Controller
 // Return the search view with the resluts compacted
 return view('User.home', compact('data'));
 }
+    public function ShowDataByCategory(Request $request,$category_id){
+//        dd($category_id);
+       $data = Product::where('cat_id',$category_id)->paginate(5);
+       $category = Category::all();
+       return view('Admin.view_product',['data' => $data, 'category' => $category ]);
+    }
+
 }

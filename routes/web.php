@@ -67,3 +67,4 @@ Route::get('/showorder' ,[OrderController::class , 'show'] );
 Route::get('/remove-order/{order_id}',[OrderController::class , 'destroy']);
 
 Route::get('/search/', [ProductController::class,'search'])->name('search');
+Route::get('/viewproduct/{category_id}',[ProductController::class,'ShowDataByCategory']);

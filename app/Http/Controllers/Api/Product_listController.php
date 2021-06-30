@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Models\Product;
 
@@ -10,11 +12,12 @@ class Product_listController extends Controller
 {
     public function index()
     {
-        $data = Product::get();
+        $data = Product::paginate(5);
 
         $response['status'] = 'success';
         $response['message'] = 'Show Data';
         $response['data'] = $data;
+//        $response['token'] = $data->createToken('Api token')->accessToken;
 
         return $response;
     }
@@ -33,6 +36,8 @@ class Product_listController extends Controller
         $response['status'] = 'success';
         $response['message'] = 'Insert Data';
         $response['data'] = $data;
+//        $response['token'] = $data->createToken('Api token')->accessToken;
+
 
         return $response;
     }
@@ -44,5 +49,25 @@ class Product_listController extends Controller
         $response['data'] = [];
 
         return $response;
+    }
+    public function viewProduct($id){
+//        dd($id);
+       $data = Product::where('id',$id)->first();
+//            dd($data);
+        $response['status'] = 'success';
+        $response['message'] = 'Show Data';
+        $response['data'] = $data;
+//        $response['token'] = $data->createToken('Api token')->accessToken;
+
+        return $response;
+
+    }
+    public function ShowDataByCategory($id){
+        $data = Product::where('cat_id',$category_id)->get();
+//        $category = Category::all();
+        $response['status'] = 'success';
+        $response['message'] = 'Show Data';
+        $response['data'] = $data;
+
     }
 }

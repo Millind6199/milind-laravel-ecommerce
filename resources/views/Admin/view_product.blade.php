@@ -2,12 +2,14 @@
 <!-- <p>{{$data}}</p> -->
 <div class="row">
     <div class="col-3"></div>
-    <div class="col-4 mt-5 " style="width:900px;margin-left:50px;">
+    <div class="col-6 mt-5 " style="width:900px;margin-left:50px;">
 
-        <select name="category">
-            <option value=”0”>Select Product Category</option>
+        <select name="category" class="category" onChange="window.location.href = this.options[this.selectedIndex].value">
+            <option value=” ” hidden>Select Product Category</option>
+            <option value="/viewproduct">All</option>
             @foreach($category as $cat)
-                <option  value={{$cat->id}}>{{$cat->cat_name}}</option>
+
+                <option value="/viewproduct/{{$cat->id}}">{{$cat->cat_name}}</option>
             @endforeach
 
         </select>
@@ -21,7 +23,7 @@
                 <th>Product Amount</th>
                 <th>Product Image</th>
                 <th>Product Status</th>
-                <th>Action</th>
+                <th colspan="2">Action</th>
             </tr>
             @foreach($data as $list)
                 <tr>
@@ -40,6 +42,8 @@
                     <td class="status-{{$list->id}}">{{$list->product_status}}</td>
                     <td>
                         <a href="/editproduct/{{$list->id}}" class="btn btn-primary"><i class="fas fa-edit"></i></a>
+                    </td>
+                    <td>
                         <a href="/remove/{{$list->id}}" class="btn btn-danger delete_btn"><i class="fas fa-trash-alt"></i></a>
                     </td>
                 </tr>
@@ -63,7 +67,7 @@
 
 
 <script>
-    function checkStatus(id,status){
+    function checkStatus(id){
         // alert(id);die;
         if ($("#marked-"+id).is(":checked")) {
             statusData = "Available";
@@ -75,18 +79,17 @@
         //alert(statusData);
         $.ajax({
             type:"GET",
-            url:"/updatestatus/",
+            url:"/updatestatus",
             data: {
                 id : id,
-                status : statusData ,
+                product_status : statusData ,
             },
             dataType:"html",
             success:function(data){
                 //alert("done");
                 //if()
-                console.log(id, statusData);
+                console .log(id, statusData);
                 $('.status-'+id).html('<span class="status-'+id+''+color+'">'+statusData+'</span>');
-                // ye status class element to kahi dikh nahi ra
                 // $('.change').html(data);
             },
         });
@@ -137,4 +140,21 @@
             })
         });
     });
+
+    // $(document).ready(function(){
+    //    $('.category').on('change' ,function(){
+    //        var catId = $(this).val();
+    //        if(catId){
+    //            $.ajax({
+    //                url:"/viewproduct/"+catId,
+    //                type:"GET",
+    //                dataType: "html",
+    //
+    //                success:function(data){
+    //                   console.log(data.products)
+    //            },
+    //            });
+    //        }
+    //    });
+    // });
 </script>
